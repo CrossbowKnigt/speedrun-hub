@@ -1,13 +1,13 @@
-package com.cross.speedrunhub;
+package com.cross.speedrunhub.boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpeedrunhubApplication {
+public class SpeedrunHubApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpeedrunhubApplication.class, args);
+		SpringApplication.run(SpeedrunHubApplication.class, args);
 	}
 
 }
