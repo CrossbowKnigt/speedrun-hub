@@ -1,6 +1,9 @@
-package com.cross.speedrunhub.boot.marathon.application;
+package com.cross.speedrunhub.marathon.application;
 
-import com.cross.speedrunhub.boot.marathon.domain.*;
+import com.cross.speedrunhub.marathon.domain.Marathon;
+import com.cross.speedrunhub.marathon.domain.MarathonAdapter;
+import com.cross.speedrunhub.marathon.domain.UpdateMarathonCommand;
+import com.cross.speedrunhub.marathon.domain.UpdateMarathonUseCase;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

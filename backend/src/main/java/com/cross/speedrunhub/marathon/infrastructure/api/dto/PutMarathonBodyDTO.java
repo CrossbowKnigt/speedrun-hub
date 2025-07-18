@@ -1,4 +1,4 @@
-package com.cross.speedrunhub.boot.marathon.domain;
+package com.cross.speedrunhub.marathon.infrastructure.api.dto;
 
 import lombok.Data;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-public class CreateMarathonCommand {
+public class PutMarathonBodyDTO {
 
     private String name;
     private String slug;

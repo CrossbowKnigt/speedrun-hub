@@ -1,4 +1,4 @@
-package com.cross.speedrunhub.boot.marathon.domain;
+package com.cross.speedrunhub.marathon.domain;
 
 public interface MarathonAdapter {
 

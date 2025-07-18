@@ -1,11 +1,11 @@
-package com.cross.speedrunhub.boot.marathon.infrastructure;
+package com.cross.speedrunhub.marathon.infrastructure.adapter;
 
-import com.cross.speedrunhub.boot.marathon.domain.CreateMarathonCommand;
-import com.cross.speedrunhub.boot.marathon.domain.Marathon;
-import com.cross.speedrunhub.boot.marathon.domain.MarathonAdapter;
-import com.cross.speedrunhub.boot.marathon.domain.UpdateMarathonCommand;
-import com.cross.speedrunhub.boot.marathon.infrastructure.database.MarathonJpa;
-import com.cross.speedrunhub.boot.marathon.infrastructure.database.MarathonPostgresRepository;
+import com.cross.speedrunhub.marathon.domain.CreateMarathonCommand;
+import com.cross.speedrunhub.marathon.domain.Marathon;
+import com.cross.speedrunhub.marathon.domain.MarathonAdapter;
+import com.cross.speedrunhub.marathon.domain.UpdateMarathonCommand;
+import com.cross.speedrunhub.marathon.infrastructure.adapter.database.MarathonJpa;
+import com.cross.speedrunhub.marathon.infrastructure.adapter.database.MarathonPostgresRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

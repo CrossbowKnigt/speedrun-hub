@@ -1,4 +1,4 @@
-package com.cross.speedrunhub.boot.marathon.infrastructure.database;
+package com.cross.speedrunhub.marathon.infrastructure.adapter.database;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
