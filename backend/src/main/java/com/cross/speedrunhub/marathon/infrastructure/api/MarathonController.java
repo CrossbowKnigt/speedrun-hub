@@ -11,17 +11,21 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("/api/marathons")
 @RequiredArgsConstructor
 public class MarathonController {
 
+    private final MarathonApiMapper marathonApiMapper;
+
     private final CreateMarathonUseCase createMarathonUseCase;
 
     private final UpdateMarathonUseCase updateMarathonUseCase;
 
-    private final MarathonApiMapper marathonApiMapper;
+    private final GetMarathonUseCase getMarathonsUseCase;
 
     @PostMapping
     public ResponseEntity<MarathonDTO> createMarathon(
@@ -41,6 +45,24 @@ public class MarathonController {
         UpdateMarathonCommand command =
                 marathonApiMapper.toUpdateMarathonCommand(id, putMarathonBodyDTO);
         Marathon marathon = updateMarathonUseCase.updateMarathon(command);
+
+        return ResponseEntity.ok(marathonApiMapper.toMarathonDTO(marathon));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<MarathonDTO>> getMarathons() {
+
+        // TODO: add criteria
+        List<Marathon> marathons = getMarathonsUseCase.getAllMarathons();
+
+        return ResponseEntity.ok(marathonApiMapper.toMarathonListDTO(marathons));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<MarathonDTO> getMarathonById(@PathVariable("id") Integer id) {
+
+        // TODO: add criteria
+        Marathon marathon = getMarathonsUseCase.getMarathonById(id);
 
         return ResponseEntity.ok(marathonApiMapper.toMarathonDTO(marathon));
     }

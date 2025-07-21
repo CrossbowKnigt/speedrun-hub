@@ -9,10 +9,14 @@ import com.cross.speedrunhub.marathon.infrastructure.api.dto.PutMarathonBodyDTO;
 
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface MarathonApiMapper {
 
     MarathonDTO toMarathonDTO(Marathon marathon);
+
+    List<MarathonDTO> toMarathonListDTO(List<Marathon> marathons);
 
     CreateMarathonCommand toCreateMarathonCommand(PostMarathonBodyDTO postMarathonBodyDTO);
 

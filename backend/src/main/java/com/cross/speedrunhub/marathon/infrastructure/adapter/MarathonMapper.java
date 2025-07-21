@@ -7,10 +7,14 @@ import com.cross.speedrunhub.marathon.infrastructure.adapter.database.MarathonJp
 
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface MarathonMapper {
 
     Marathon toDomain(MarathonJpa marathonJpa);
+
+    List<Marathon> toDomainList(List<MarathonJpa> marathonJpaList);
 
     MarathonJpa toJpa(CreateMarathonCommand createMarathonCommand);
 

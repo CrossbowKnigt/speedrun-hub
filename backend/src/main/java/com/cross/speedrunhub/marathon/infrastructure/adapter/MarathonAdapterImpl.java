@@ -12,6 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Optional;
+
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -45,5 +48,24 @@ public class MarathonAdapterImpl implements MarathonAdapter {
             log.error("Error updating marathon: {}", e.getMessage());
             throw new RuntimeException("Failed to update marathon");
         }
+    }
+
+    @Override
+    public Marathon getMarathonById(Integer id) {
+
+        log.info("Retrieving marathon by ID: {}", id);
+        Optional<MarathonJpa> marathonJpa = marathonPostgresRepository.findById(id);
+        if (marathonJpa.isPresent()) {
+            return marathonMapper.toDomain(marathonJpa.get());
+        }
+        log.warn("Marathon with ID {} not found", id);
+        throw new RuntimeException("Marathon not found with ID: " + id);
+    }
+
+    @Override
+    public List<Marathon> getAllMarathons() {
+        log.info("Retrieving all marathons");
+
+        return this.marathonMapper.toDomainList(marathonPostgresRepository.findAll());
     }
 }
