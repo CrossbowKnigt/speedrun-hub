@@ -1,5 +1,6 @@
 package com.cross.speedrunhub.marathon.infrastructure.adapter;
 
+import com.cross.speedrunhub.error.domain.NotFoundException;
 import com.cross.speedrunhub.marathon.domain.CreateMarathonCommand;
 import com.cross.speedrunhub.marathon.domain.Marathon;
 import com.cross.speedrunhub.marathon.domain.MarathonAdapter;
@@ -59,7 +60,7 @@ public class MarathonAdapterImpl implements MarathonAdapter {
             return marathonMapper.toDomain(marathonJpa.get());
         }
         log.warn("Marathon with ID {} not found", id);
-        throw new RuntimeException("Marathon not found with ID: " + id);
+        throw new NotFoundException("Marathon not found with ID: " + id);
     }
 
     @Override
@@ -67,5 +68,11 @@ public class MarathonAdapterImpl implements MarathonAdapter {
         log.info("Retrieving all marathons");
 
         return this.marathonMapper.toDomainList(marathonPostgresRepository.findAll());
+    }
+
+    @Override
+    public void deleteMarathon(Integer id) {
+
+        marathonPostgresRepository.deleteById(id);
     }
 }

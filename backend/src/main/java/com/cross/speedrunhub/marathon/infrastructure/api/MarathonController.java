@@ -27,6 +27,8 @@ public class MarathonController {
 
     private final GetMarathonUseCase getMarathonsUseCase;
 
+    private final DeleteMarathonUseCase deleteMarathonUseCase;
+
     @PostMapping
     public ResponseEntity<MarathonDTO> createMarathon(
             @RequestBody PostMarathonBodyDTO postMarathonBodyDTO) {
@@ -61,9 +63,16 @@ public class MarathonController {
     @GetMapping("/{id}")
     public ResponseEntity<MarathonDTO> getMarathonById(@PathVariable("id") Integer id) {
 
-        // TODO: add criteria
         Marathon marathon = getMarathonsUseCase.getMarathonById(id);
 
         return ResponseEntity.ok(marathonApiMapper.toMarathonDTO(marathon));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMarathon(@PathVariable("id") Integer id) {
+
+        deleteMarathonUseCase.deleteMarathon(id);
+
+        return ResponseEntity.ok().build();
     }
 }

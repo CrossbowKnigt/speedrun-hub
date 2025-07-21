@@ -11,4 +11,6 @@ public interface MarathonAdapter {
     Marathon getMarathonById(Integer id);
 
     List<Marathon> getAllMarathons();
+
+    void deleteMarathon(Integer id);
 }
