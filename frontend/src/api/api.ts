@@ -1,6 +1,7 @@
 import axios from 'axios';
+import type { Marathon } from '../types/Marathon';
 
-const API_BASE_URL: string = 'http://localhost:8080/api/v1';
+const API_BASE_URL: string = 'http://localhost:8080/api/';
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -14,8 +15,8 @@ export const apiClient = axios.create({
 });
 
 
-export const getTest = async (): Promise<void> => {
-  const response = await apiClient.get<void>(`/test`);
+export const getMarathons = async (): Promise<Marathon[]> => {
+  const response = await apiClient.get<Marathon[]>(`/marathons`);
   return response.data;
 };
 
