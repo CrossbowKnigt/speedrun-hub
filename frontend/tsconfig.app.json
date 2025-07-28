@@ -23,5 +23,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "hero.ts"]
+  "include": ["src", "hero.ts", "src/components", "app"]
 }
