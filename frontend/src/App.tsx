@@ -1,39 +1,38 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { getTest } from './api/api'
+import { useEffect, useState } from "react"
+import MarathonCard from "./components/MarathonCard.tsx"
+import type { Marathon } from "./types/Marathon.ts";
+import { apiClient, getMarathons } from "./api/api.ts";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [marathons, setMarathons] = useState<Marathon[]>([]);
 
   useEffect(() => {
-    getTest()
+    fetchData()
   }, []);
-  // ...
+
+  const fetchData = async () => {
+    try {
+      const response = await getMarathons();
+      console.log(response)
+      setMarathons(response);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      // Handle errors
+    }
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {marathons.map(marathon => {
+        return <MarathonCard
+          key={marathon.id}
+          title={marathon.name}
+          startDate={marathon.startDate}
+          duration={marathon.endDate}
+          runCount={4}
+        ></MarathonCard>
+      })}
     </>
   )
 }
